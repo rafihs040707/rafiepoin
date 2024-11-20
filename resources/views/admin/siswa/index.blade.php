@@ -59,7 +59,7 @@
                   <td>Tidak Aktif</td>
                   @endif
                   <td>
-                        <form onsumbit="return confirm('Apakah Anda Yakin ?');" action="{{ route('siswa.destroy', $siswa->id) }}" method="POST">
+                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('siswa.destroy', $siswa->id) }}" method="POST">
                               <a href="{{ route('siswa.show', $siswa->id) }}" class="btn btn-sm btn-dark">SHOW</a>
                               <a href="{{ route('siswa.edit', $siswa->id) }}" class="btn btn-sm btn-dark">EDIT</a>
                               @csrf
