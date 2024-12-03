@@ -3,7 +3,7 @@
 @section('content')
 <br><br>
 <form action="{{ route('authenticate') }}" method="post">
-<div class="group block max-w-xs mx-auto rounded-lg p-6 bg-white ring-1 ring-slate-900/5 shadow-lg grid justify-center">
+<div class="group block max-w-max mx-auto rounded-lg p-6 bg-white ring-1 ring-slate-900/5 shadow-lg grid justify-center">
       <h1 class="text-xl text-center font-sans font-medium">Login</h1><br>
       @csrf
       <label>Email Address</label>
