@@ -155,7 +155,7 @@ class SiswaController extends Controller
         ]);
 
         //get post by ID
-        $datas = siswa::findOrFail($id); --
+        $datas = siswa::findOrFail($id);
         //edit akun
          $this->editAccount($request->name, $id);
     
