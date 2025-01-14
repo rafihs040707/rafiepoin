@@ -145,7 +145,7 @@ class SiswaController extends Controller
         //validate form
         $validate = $request->validate([
             'name'       => 'required|string|max:250',
-            'image'      => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'image'      => 'image|mimes:jpeg,png,jpg|max:2048',
             'nis'        => 'required|numeric',
             'tingkatan'  => 'required',
             'jurusan'    => 'required',

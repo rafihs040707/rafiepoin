@@ -3,7 +3,7 @@
 @section('content')
 <br><br>
 <form action="{{ route('store') }}" method="POST">
-<div class="group block max-w-max mx-auto rounded-lg p-6 bg-white ring-1 ring-slate-900/5 shadow-lg grid justify-items-center">
+<div class="group max-w-max mx-auto rounded-lg p-6 bg-white ring-1 ring-slate-900/5 shadow-lg grid justify-items-center">
       <h1 class="text-xl text-center font-sans font-medium">Register</h1><br>
       @csrf
       <label>Nama Lengkap</label>
