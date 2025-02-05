@@ -14,10 +14,6 @@
       
       <input type="submit" value="Login" class="bg-gray-950 hover:bg-gray-400 border text-white border-slate-400 rounded">
 
-      <div class="flex justify-center py-2">
-      <p>Apabila belum punya akun!</p>
-      <a href="{{ route('register') }}" class="text-blue-600 px-1">Daftar</a>
-      </div>
 </div>
 </form>
 
