@@ -143,6 +143,7 @@ class LoginRegisterController extends Controller
 
     public function destroy($id): RedirectResponse
     {
+
         //cari id siswa
         $siswa = DB::table('siswas')->where('id_user', $id)->value('id');
 
@@ -164,6 +165,7 @@ class LoginRegisterController extends Controller
 
     public function destroySiswa(string $id)
     {
+
         //get id siswa
         $post = Siswa::findOrFail($id);
 
