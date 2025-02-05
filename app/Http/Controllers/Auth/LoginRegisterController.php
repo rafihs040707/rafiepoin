@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginRegisterController extends Controller
 {
@@ -78,5 +80,97 @@ class LoginRegisterController extends Controller
         $request->session()->regenerateToken();
         return redirect()->route('login')
             ->withSuccess('You have logged out successfully');;
+    }
+
+    public function update(Request $request, $id): RedirectResponse
+    {
+        //validate form
+        $validate = $request->validate([
+            'name' => 'required|string|max:250',
+            'usertype' => 'required'
+        ]);
+
+        //get post by id
+        $datas = User::findOrFail($id);
+        //edit akun
+
+        $datas->update([
+            'name' => $request->name,
+            'usertype' => $request->usertype
+        ]);
+
+        //redirect to index
+        return redirect()->route('akun.edit', $id)->with(['succes' => 'Data Berhasil Diubah']);
+    }
+
+    public function updateEmail(Request $request, $id): RedirectResponse
+    {
+        //validate form
+        $validate = $request->validate([
+            'email' => 'required|email|max:250|unique:users'
+        ]);
+
+        //get post by id
+        $datas = User::findOrFail($id);
+        //edit akun
+
+        $datas->update([
+            'email' => $request->email
+        ]);
+
+         //redirect to index
+         return redirect()->route('akun.edit', $id)->with(['succes' => 'Email Berhasil Diubah']);
+    }
+
+    public function updatePassword(Request $request, $id): RedirectResponse
+    {
+        //validate form
+        $validate = $request->validate([
+            'password' => 'required|min:8|confirmed'
+        ]);
+
+        //get post by id
+        $datas = User::findOrFail($id);
+        //edit akun
+
+        $datas->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+         //redirect to index
+         return redirect()->route('akun.edit', $id)->with(['succes' => 'PASSWORD Berhasil Diubah']);
+    }
+
+    public function destroy($id): RedirectResponse
+    {
+        //cari id siswa
+        $siswa = DB::table('siswas')->where('id_user', $id)->value('id');
+
+        //jika siswa
+        if ($siswa){
+            //delete siswa
+            $this->destroySiswa($siswa);            
+        }
+
+        //get post by id
+        $post = User::findOrFail($id);
+        
+        //delete post
+        $post->delete();
+
+        //redirect to index
+        return redirect()->route('akun.index')->with(['success' => 'Akun Berhasil Dihapus!']);
+    }
+
+    public function destroySiswa(string $id)
+    {
+        //get id siswa
+        $post = Siswa::findOrFail($id);
+
+        //delete image
+        Storage::delete('public/siswas/' . $post->image);
+
+        //delete post
+        $post->delete();
     }
 }

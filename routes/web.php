@@ -20,5 +20,7 @@ Route::middleware('auth', 'admin')->group(function () {
     Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin/dashboard');
     Route::resource('admin/siswa', SiswaController::class);
     Route::resource('admin/akun', LoginRegisterController::class);
+    route::put('/updateEmail/{akun}', [LoginRegisterController::class, 'updateEmail'])->name('updateEmail');
+    route::put('/updatePassword/{akun}', [LoginRegisterController::class, 'updatePassword'])->name('updatePassword');
     Route::post('/logout', [LoginRegisterController::class, 'logout'])->name('logout');
 });
