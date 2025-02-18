@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
             border-collapse: collapse;
             margin: 20px 0px;
         }
+
         table,
         th,
         td {
@@ -17,6 +19,7 @@
         }
     </style>
 </head>
+
 <body>
     
         <h1>Edit Akun</h1>
@@ -32,10 +35,15 @@
         </div>
         @endif
 
+        @if(Session::has('success'))
+        <div class="alert alert-success" role="alert">
+            {{ Session::get('success') }}
+        </div>
+        @endif
+
         <form action="{{ route('akun.update', $akun->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-
             <h2>Data Akun</h2>
             <label>Nama Lengkap</label><br>
             <input type="text" id="name" name="name" value="{{ $akun->name}}">
@@ -67,7 +75,6 @@
         <form action="{{ route('updatePassword', $akun->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            
             <label>Password</label><br>
             <input type="password" id="password" name="password">
             <br><br>
@@ -82,4 +89,5 @@
             <br><br>
         </form>
 </body>
+
 </html>

@@ -9,6 +9,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
+use App\Models\Siswa;
+use Illuminate\Support\Facades\Storage;
 
 class LoginRegisterController extends Controller
 {
@@ -82,6 +85,14 @@ class LoginRegisterController extends Controller
             ->withSuccess('You have logged out successfully');;
     }
 
+    public function edit($id)
+    {
+        $akun = User::findOrFail($id);
+        return view('admin.akun.edit', compact('akun'));
+    }
+
+
+
     public function update(Request $request, $id): RedirectResponse
     {
         //validate form
@@ -100,7 +111,7 @@ class LoginRegisterController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('akun.edit', $id)->with(['succes' => 'Data Berhasil Diubah']);
+        return redirect()->route('akun.edit', $id)->with(['success' => 'Data Berhasil Diubah']);
     }
 
     public function updateEmail(Request $request, $id): RedirectResponse
@@ -119,7 +130,7 @@ class LoginRegisterController extends Controller
         ]);
 
          //redirect to index
-         return redirect()->route('akun.edit', $id)->with(['succes' => 'Email Berhasil Diubah']);
+         return redirect()->route('akun.edit', $id)->with(['success' => 'Email Berhasil Diubah']);
     }
 
     public function updatePassword(Request $request, $id): RedirectResponse
@@ -138,7 +149,7 @@ class LoginRegisterController extends Controller
         ]);
 
          //redirect to index
-         return redirect()->route('akun.edit', $id)->with(['succes' => 'PASSWORD Berhasil Diubah']);
+         return redirect()->route('akun.edit', $id)->with(['success' => 'PASSWORD Berhasil Diubah']);
     }
 
     public function destroy($id): RedirectResponse
