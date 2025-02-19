@@ -20,7 +20,18 @@ class LoginRegisterController extends Controller
         //get Data db
         $users = User::latest()->paginate(10);
 
+        if (request('cari')) {
+            $users = $this->search(request('cari'));
+        }
+
         return view('admin.akun.index', compact('users'));
+    }
+
+    public function search(string $cari)
+    {
+        $users = DB::table('users')->where(DB::raw('lower(name)'), 'like', '%' . strtolower($cari) . '%')->paginate(10);
+
+        return $users;
     }
 
     public function create()

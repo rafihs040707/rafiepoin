@@ -40,7 +40,7 @@
             @forelse ($pelanggarans as $pelanggaran)
                 <tr>
                     <td>{{ $pelanggaran->jenis }}</td>
-                    <td>{{ $pelanggaran->Konsekuensi }}</td>
+                    <td>{{ $pelanggaran->konsekuensi }}</td>
                     <td>{{ $pelanggaran->poin}}</td>
                     
                     <td>
