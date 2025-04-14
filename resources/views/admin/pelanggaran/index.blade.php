@@ -45,6 +45,7 @@
                     
                     <td>
                         <form onsubmit="return confirm('Apakah Anda Yakin?');" action="{{ route('pelanggaran.destroy', $pelanggaran->id) }}" method="POST">
+                            <a href="{{ route('pelanggaran.edit', $pelanggaran->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                             @csrf
                             @method('DELETE')
                             <button type="submit">HAPUS</button>

@@ -122,7 +122,7 @@ class LoginRegisterController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('akun.edit', $id)->with(['success' => 'Data Berhasil Diubah']);
+        return redirect()->route('akun.index', $id)->with(['success' => 'Data Berhasil Diubah']);
     }
 
     public function updateEmail(Request $request, $id): RedirectResponse
