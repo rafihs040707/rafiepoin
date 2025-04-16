@@ -42,7 +42,7 @@
       <div>
             <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
       </div>
-
+      <br>
       <label>Hak Akses</label><br>
       <select name="usertype" required>
             <option value="">Pilih Hak Akses</option>
