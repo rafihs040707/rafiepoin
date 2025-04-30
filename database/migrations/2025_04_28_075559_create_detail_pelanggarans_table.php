@@ -16,7 +16,7 @@ return new class extends Migration
             $table->bigInteger('id_pelanggar');
             $table->bigInteger('id_pelanggaran');
             $table->bigInteger('id_user');
-            $table->integer('status');
+            $table->integer('status');//1 = Sudah diberikan konsekuensi, 0 = belum diberikan kosenkuensi
             $table->timestamps();
         });
     }
