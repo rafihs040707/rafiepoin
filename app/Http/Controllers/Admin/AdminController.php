@@ -11,6 +11,9 @@ class AdminController extends Controller
 {
     public function index()
     {
-    return view('admin.dashboard');
+        $pelanggars = $this->top10Pelanggar();
+        $hitung = $this->top10Pelanggaran();
+        list($jmlSiswa, $jmlPelanggars) = $this->countDash();
+        return view('admin.dashboard', compact('pelanggars', 'hitung', 'jmlSiswa', 'jmlPelanggars'));
     }
 }
