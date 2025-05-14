@@ -146,7 +146,7 @@ class PelanggarController extends Controller
         ->where('pelanggars.id', $id)
         ->first();
 
-        $pelanggarans = DB::table('pelanggarans')->>latest()->paginate(10);
+        $pelanggarans = DB::table('pelanggarans')->latest()->paginate(10);
 
         if (request('cari')){
             $pelanggarans = $this->searchPelanggaran(request('cari'));
@@ -159,7 +159,7 @@ class PelanggarController extends Controller
 
     public function searchPelanggaran(string $cari)
     {
-        $pelanggarans = DB::table('pelanggarans')->where(DB::raw('lower(jenis)'), 'like', '%' . strlower($cari) . '%')->paginate(10);
+        $pelanggarans = DB::table('pelanggarans')->where(DB::raw('lower(jenis)'), 'like', '%' . strtolower($cari) . '%')->paginate(10);
         return $pelanggarans;
     }
 
@@ -296,5 +296,28 @@ class PelanggarController extends Controller
         return redirect()->route('pelanggar.index')->with(['success' => $pelanggar->name. 'Telah Ditindak!']);
     }
 
-    // halaman 23-24 modul 1
+    // Hapus data
+    public function destroy ($id): RedirectResponse
+    {
+        //delete pelanggar
+        $this->destroyPelanggaran($id);
+
+        // get post by id
+        $post = Pelanggar::findOrFai($id);
+
+        //delete post
+        $post->delete();
+
+        //redirect to index
+        return redirect()->route('pelanggar.index')->with(['success' => 'Data Berhasil Dihapus!']);
+    }
+
+    public function destroyPelanggaran(string $id)
+    {
+        //get id user
+        $pelanggaran = DB::table('detail_pelanggarans')->where('id_pelanggar', $id);
+
+        //delete post
+        $pelanggaran->delete();
+    }
 }
